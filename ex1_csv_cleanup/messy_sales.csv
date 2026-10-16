@@ -1,0 +1,66 @@
+Invoice #, customer,REGION,date,Amount,qty
+INV-1000,Delta Tools,north,2026-09-06,$748.08,1
+INV-1001,Acme Corp,south,6-Sep-2026,$123.06, 4
+INV-1002,acme corp ,West,2026-09-02,$752.82,1
+INV-1003,Acme Corp,West,4-Sep-2026,$879.82,1
+INV-1004,blue fox llc,West,2026-09-09,$509.58,
+INV-1005,ACME CORP,North ,5-Sep-2026,USD 535.52,2
+INV-1006,acme corp ,north,2026-09-06,USD 225.06,
+INV-1007,delta tools  ,west ,09/07/2026,304.80,2
+INV-1008,blue fox llc,west ,2026-09-04,670.03,3
+INV-1009,Delta Tools,NORTH,2026-09-02,179.19, 4
+INV-1010,acme corp ,east,2026-09-07,641.00,
+INV-1011,delta tools  ,North ,8-Sep-2026,$852.98, 4
+INV-1012,blue fox llc,west ,2026-09-02,659.13,3
+INV-1013,Nordic Tea,NORTH,09/01/2026,USD 149.53,1
+INV-1014,ACME CORP,south,09/04/2026,382.31, 4
+INV-1015,delta tools  ,West,2026-09-02,USD 286.16,2
+INV-1016,blue fox llc,West,7-Sep-2026,630.31, 4
+INV-1017,acme corp ,NORTH,2026-09-04,$247.16,2
+INV-1018,ACME CORP,South,09/01/2026,53.48, 4
+INV-1019,Nordic Tea,NORTH,09/09/2026,USD 780.32,
+INV-1020,Delta Tools,West,09/01/2026,385.00, 4
+INV-1021,Blue Fox LLC,North ,2026-09-07,$424.53,1
+INV-1022,Acme Corp,North ,6-Sep-2026,$531.77,
+INV-1023,Acme Corp,North ,09/02/2026,$571.96,2
+INV-1024,Nordic Tea,west ,09/05/2026,$148.05, 4
+INV-1025,delta tools  ,South,09/08/2026,$172.50,3
+INV-1026,ACME CORP,north,09/05/2026,$858.34,
+INV-1027,Acme Corp,South,2026-09-06,USD 783.83,3
+INV-1028,ACME CORP,east,09/09/2026,$502.70,
+INV-1029,Blue Fox LLC,south,6-Sep-2026,$745.58,2
+INV-1030,delta tools  ,east,4-Sep-2026,USD 74.63,1
+INV-1031,blue fox llc,south,09/05/2026,USD 564.37,3
+INV-1032,Nordic Tea,east,8-Sep-2026,$237.39,2
+INV-1033,Nordic Tea,south,2026-09-08,580.46,
+INV-1034,Nordic Tea,North ,09/01/2026,USD 151.92, 4
+INV-1035,ACME CORP,West,09/04/2026,USD 332.64, 4
+INV-1036,acme corp ,NORTH,09/08/2026,$894.15,1
+INV-1037,delta tools  ,NORTH,3-Sep-2026,USD 752.53, 4
+INV-1038,ACME CORP,north,2026-09-06,$729.45,1
+INV-1039,ACME CORP,West,9-Sep-2026,$752.23,2
+INV-1040,Blue Fox LLC,South,09/01/2026,USD 254.46,
+INV-1041,Delta Tools,NORTH,09/06/2026,$823.51,3
+INV-1042,Delta Tools,NORTH,8-Sep-2026,USD 179.06,
+INV-1043,ACME CORP,north,09/01/2026,$196.49, 4
+INV-1044,Acme Corp,east,2-Sep-2026,USD 490.60,
+INV-1045,Acme Corp,south,2026-09-08,$285.38,1
+INV-1046,Acme Corp,North ,09/09/2026,326.77,
+INV-1047,blue fox llc,west ,2026-09-09,USD 503.29, 4
+INV-1048,blue fox llc,south,2026-09-09,166.56,1
+INV-1049,Nordic Tea,North ,09/07/2026,USD 254.54,1
+INV-1050,blue fox llc,North ,4-Sep-2026,$848.58,3
+INV-1051,ACME CORP,west ,09/03/2026,$684.68,1
+INV-1052,ACME CORP,south,09/07/2026,$650.38,
+INV-1053,Delta Tools,south,09/07/2026,320.75,3
+INV-1054,delta tools  ,west ,09/01/2026,USD 65.37,3
+INV-1055,blue fox llc,North ,9-Sep-2026,$887.32,2
+INV-1056,blue fox llc,South,2026-09-02,$820.01,2
+INV-1057,Delta Tools,South,2026-09-05,176.96,
+INV-1058,Nordic Tea,North ,8-Sep-2026,98.90,2
+INV-1059,blue fox llc,north,2026-09-07,USD 125.28,3
+INV-1000,Delta Tools,north,2026-09-06,$748.08,1
+INV-1001,Acme Corp,south,6-Sep-2026,$123.06, 4
+INV-1002,acme corp ,West,2026-09-02,$752.82,1
+INV-1003,Acme Corp,West,4-Sep-2026,$879.82,1
+INV-1004,blue fox llc,West,2026-09-09,$509.58,
