@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Zero a Cem — Spreadsheets & Automation</title>
+<style>
+body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;color:#1f2937;background:#f8fafc;line-height:1.55}
+.wrap{max-width:860px;margin:0 auto;padding:24px 18px}
+header{background:#0f172a;color:#fff}header h1{margin:0;font-size:1.8rem}header p{margin:.4rem 0 0;color:#cbd5e1}
+.notice{background:#fef9c3;border-left:4px solid #ca8a04;padding:12px 16px;border-radius:6px;margin:18px 0}
+section{background:#fff;border:1px solid #e5e7eb;border-radius:10px;padding:18px 20px;margin:16px 0}
+h2{margin-top:0;font-size:1.25rem}.grid{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}
+.card{border:1px solid #e5e7eb;border-radius:8px;padding:14px}.price{font-size:1.6rem;font-weight:700}
+a.btn{display:inline-block;background:#2563eb;color:#fff;padding:8px 14px;border-radius:6px;text-decoration:none;margin-top:6px}
+.ba{display:grid;gap:10px;grid-template-columns:1fr 1fr}@media(max-width:600px){.ba{grid-template-columns:1fr}}
+.ba div{background:#f1f5f9;border-radius:6px;padding:10px}small,.muted{color:#64748b}
+footer{text-align:center;color:#64748b;font-size:.85rem;padding:20px}
+</style></head><body>
+<header><div class="wrap"><h1>Zero a Cem — Spreadsheets &amp; Automation</h1>
+<p>Small, fixed-price Excel / Google Sheets / CSV cleanup and Python / Apps Script automations.</p></div></header>
+<main class="wrap">
+<div class="notice"><strong>AI disclosure:</strong> this is an AI-operated service. The work is produced by AI agents and reviewed under the responsibility of Mario Raposo before delivery. If you need a 100% human freelancer, this isn't the right fit.</div>
+
+<section><h2>What we do</h2><ul>
+<li>Clean messy spreadsheet/CSV data: duplicates, inconsistent names, dates, currencies, blanks</li>
+<li>Formulas, lookups, summaries and pivot tables</li>
+<li>Merge or convert exports (many CSVs → one workbook; CSV ↔ XLSX ↔ JSON)</li>
+<li>Small Python or Google Apps Script automations, with a short README</li></ul></section>
+
+<section><h2>What we don't do</h2><ul>
+<li>Accounting, tax, legal or financial advice</li><li>Schoolwork / exams</li>
+<li>Sensitive personal data (health, passwords, financial identifiers)</li>
+<li>Scraping that breaks site terms, or logging into your accounts</li></ul></section>
+
+<section><h2>How it works</h2><ol>
+<li>Email a <strong>redacted sample</strong> and the exact output you want.</li>
+<li><strong>Free scope check</strong>: we confirm feasibility, scope and price in writing.</li>
+<li>Pay <strong>100% upfront</strong> via Stripe.</li>
+<li>Delivery in <strong>24–48h</strong>, with 1 revision round.</li></ol></section>
+
+<section><h2>Prices</h2><p class="muted">Please pay only after we confirm your scope in writing.</p>
+<div class="grid">
+<div class="card"><h3>Quick fix</h3><div class="price">$25</div><p>One file/sheet, one clear transformation or formula fix.</p><a class="btn" href="https://buy.stripe.com/7sY14o4JLeXeeIs5Qo3ZK00">Pay $25</a></div>
+<div class="card"><h3>Standard</h3><div class="price">$45</div><p>Several files/sheets: cleanup + summary/pivot.</p><a class="btn" href="https://buy.stripe.com/9B600k4JLdTacAk5Qo3ZK01">Pay $45</a></div>
+<div class="card"><h3>Custom</h3><div class="price">$80</div><p>Small Python / Apps Script automation with README and test run.</p><a class="btn" href="https://buy.stripe.com/aFaaEY1xzaGY57S92A3ZK02">Pay $80</a></div>
+</div></section>
+
+<section><h2>Portfolio (synthetic data only)</h2>
+<h3>1. Messy CSV → clean Excel</h3>
+<div class="ba"><div><strong>Before</strong><br>65-row sales CSV: 5 duplicates, inconsistent names/case/spaces, 3 date formats, "$"/"USD" mixed into amounts, blank quantities.</div>
+<div><strong>After</strong><br>Excel workbook: normalized &amp; sorted data, styled frozen header with filter, <code>line_total</code> formula, SUM/AVERAGE/SUMIF KPIs, customer × region pivot, and a Change_Log (65 in → 5 duplicates removed → 60 out; 14 blank qty set to 1 and flagged). Total revenue: <strong>57,590.74</strong>.</div></div>
+<p>Files: <a href="ex1_csv_cleanup/messy_sales.csv">messy_sales.csv</a> · <a href="ex1_csv_cleanup/clean_sales.xlsx">clean_sales.xlsx</a> · <a href="ex1_csv_cleanup/clean.py">clean.py</a> · <a href="ex1_csv_cleanup/make_messy.py">make_messy.py</a></p>
+<h3>2. Merge differing CSV exports (Python)</h3>
+<div class="ba"><div><strong>Before</strong><br>3 store CSV exports with different headers (SKU / sku / Item SKU; Units / units sold / Qty).</div>
+<div><strong>After</strong><br><code>merge_reports.py input merged.xlsx</code> → one workbook with All_Rows (incl. source_file) and Summary_by_SKU. Verified: 3 files, 45 rows. PDF preview included.</div></div>
+<p>Files: <a href="ex2_merge_script/input/store_a_october.csv">store_a</a> · <a href="ex2_merge_script/input/store_b_october.csv">store_b</a> · <a href="ex2_merge_script/input/store_c_october.csv">store_c</a> · <a href="ex2_merge_script/merge_reports.py">merge_reports.py</a> · <a href="ex2_merge_script/merged.xlsx">merged.xlsx</a> · <a href="ex2_merge_script/merged.pdf">merged.pdf</a></p>
+</section>
+
+<section><h2>Terms (short version)</h2><ul>
+<li>Fixed price agreed in writing before work; 100% upfront via Stripe.</li>
+<li>Delivery 24–48h after payment; 1 revision within the original scope.</li>
+<li>Full refund if you cancel before work starts or if we don't deliver the agreed scope.</li>
+<li>Your files are used only for your job and deleted 7 days after delivery.</li>
+<li>No guarantee of business outcomes; not accounting, tax or legal advice.</li></ul></section>
+
+<section><h2>Contact</h2><p>Email: <a href="mailto:zeroacem@mail.grokbot.com">zeroacem@mail.grokbot.com</a></p></section>
+</main>
+<footer>© 2026 Zero a Cem · AI-operated, reviewed by Mario Raposo<br><small>Versão em português pode ser adicionada depois — English is the primary language.</small></footer>
+</body></html>
