@@ -1,75 +1,357 @@
 <!DOCTYPE html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Zero a Cem — Spreadsheets & Automation</title>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Projeto Zero a Cem: a small-business budget tracker, an invoice and payment tracker, and a Python CSV/Excel cleaner. Free Lite and paid Pro files are on Payhip. This page does not take payment.">
+<title>Projeto Zero a Cem — Budget, invoices, and CSV cleanup</title>
 <style>
-body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;color:#1f2937;background:#f8fafc;line-height:1.55}
-.wrap{max-width:860px;margin:0 auto;padding:24px 18px}
-header{background:#0f172a;color:#fff}header h1{margin:0;font-size:1.8rem}header p{margin:.4rem 0 0;color:#cbd5e1}
-.notice{background:#fef9c3;border-left:4px solid #ca8a04;padding:12px 16px;border-radius:6px;margin:18px 0}
-section{background:#fff;border:1px solid #e5e7eb;border-radius:10px;padding:18px 20px;margin:16px 0}
-h2{margin-top:0;font-size:1.25rem}.grid{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}
-.card{border:1px solid #e5e7eb;border-radius:8px;padding:14px}.price{font-size:1.6rem;font-weight:700}
-a.btn{display:inline-block;background:#2563eb;color:#fff;padding:8px 14px;border-radius:6px;text-decoration:none;margin-top:6px}
-.ba{display:grid;gap:10px;grid-template-columns:1fr 1fr}@media(max-width:600px){.ba{grid-template-columns:1fr}}
-.ba div{background:#f1f5f9;border-radius:6px;padding:10px}small,.muted{color:#64748b}
-footer{text-align:center;color:#64748b;font-size:.85rem;padding:20px}
-</style></head><body>
-<header><div class="wrap"><h1>Zero a Cem — Spreadsheets &amp; Automation</h1>
-<p>Small, fixed-price Excel / Google Sheets / CSV cleanup and Python / Apps Script automations.</p></div></header>
+:root {
+  --ink: #1c1917;
+  --muted: #57534e;
+  --bg: #faf7f2;
+  --card: #fff;
+  --line: #e7e0d6;
+  --navy: #1c1917;
+  --accent: #9a3412;
+  --accent-dark: #7c2d12;
+  --free: #3f6212;
+  --free-bg: #f7fee7;
+  --pro-bg: #fff7ed;
+  --notice-bg: #fffbeb;
+  --notice-border: #d97706;
+  --soft: #f3eee6;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  color: var(--ink);
+  background: var(--bg);
+  line-height: 1.55;
+  font-size: 1.05rem;
+}
+a { color: var(--accent-dark); }
+a:hover { color: var(--accent); }
+a:focus-visible, .btn:focus-visible {
+  outline: 3px solid #b45309;
+  outline-offset: 2px;
+}
+.wrap { max-width: 920px; margin: 0 auto; padding: 0 18px; }
+header {
+  background: var(--navy);
+  color: #faf7f2;
+  padding: 28px 0 22px;
+}
+header h1 { margin: 0; font-size: 1.85rem; letter-spacing: -0.02em; }
+header .lede { margin: 0.55rem 0 0; color: #e7e0d6; max-width: 40rem; }
+header nav { margin-top: 14px; display: flex; flex-wrap: wrap; gap: 8px 14px; }
+header nav a { color: #fdba74; text-decoration: none; font-size: 0.95rem; }
+header nav a:hover { text-decoration: underline; }
+.kicker {
+  margin: 0 0 6px;
+  font-size: 0.78rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #fdba74;
+}
+main { padding: 8px 0 12px; }
+.notice {
+  background: var(--notice-bg);
+  border-left: 4px solid var(--notice-border);
+  padding: 12px 16px;
+  border-radius: 6px;
+  margin: 18px 0;
+}
+section {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 20px 22px;
+  margin: 16px 0;
+}
+h2 { margin: 0 0 0.4rem; font-size: 1.35rem; letter-spacing: -0.02em; }
+h3 { margin: 0 0 0.35rem; font-size: 1.05rem; }
+.muted, small { color: var(--muted); }
+.intro { margin-top: 0; }
+section[id] { scroll-margin-top: 12px; }
+code { overflow-wrap: anywhere; }
+.tag {
+  display: inline-block;
+  font-size: 0.75rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 4px;
+}
+.split {
+  display: grid;
+  gap: 12px;
+  grid-template-columns: 1.15fr 0.85fr;
+  margin-top: 14px;
+}
+.tier {
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 14px 16px;
+}
+.tier.pro { background: var(--pro-bg); border-color: #fed7aa; }
+.tier.lite { background: var(--free-bg); border-color: #d9f99d; }
+.price { font-size: 1.45rem; font-weight: 700; margin: 0; }
+.price span { font-size: 0.85rem; font-weight: 500; color: var(--muted); }
+.tier ul { margin: 8px 0 12px; padding-left: 1.15rem; }
+.tier li { margin: 0.2rem 0; }
+.btn {
+  display: inline-block;
+  background: var(--accent);
+  color: #fff;
+  padding: 9px 14px;
+  border-radius: 7px;
+  text-decoration: none;
+  font-weight: 600;
+}
+.btn:hover { background: var(--accent-dark); color: #fff; }
+.btn.ghost {
+  background: transparent;
+  color: var(--free);
+  border: 1px solid #84cc16;
+}
+.btn.ghost:hover { background: #ecfccb; color: var(--free); }
+.storeline { margin: 12px 0 0; }
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.95rem;
+  margin-top: 8px;
+}
+th, td {
+  text-align: left;
+  vertical-align: top;
+  border-bottom: 1px solid var(--line);
+  padding: 8px 10px 8px 0;
+}
+th { font-size: 0.82rem; text-transform: uppercase; letter-spacing: 0.03em; color: var(--muted); }
+.ba { display: grid; gap: 10px; grid-template-columns: 1fr 1fr; }
+.ba div { background: var(--soft); border-radius: 8px; padding: 12px; }
+.files { font-size: 0.95rem; }
+.later {
+  background: transparent;
+  border-style: dashed;
+}
+footer {
+  text-align: center;
+  color: var(--muted);
+  font-size: 0.85rem;
+  padding: 8px 18px 28px;
+}
+@media (max-width: 700px) {
+  header h1 { font-size: 1.55rem; }
+  section { padding: 16px; }
+  .split, .ba { grid-template-columns: 1fr; }
+  a.btn { display: block; width: 100%; text-align: center; }
+}
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <p class="kicker">Projeto Zero a Cem</p>
+    <h1>Budget, invoices, and CSV cleanup</h1>
+    <p class="lede">Three digital files for small businesses. Read what each one does here, then open it on Payhip. This page does not take payment and is not a checkout.</p>
+    <nav aria-label="On this page">
+      <a href="#products">Products</a>
+      <a href="#budget">Budget</a>
+      <a href="#invoices">Invoices</a>
+      <a href="#cleaner">Data cleaner</a>
+      <a href="#compare">Compare</a>
+      <a href="#portfolio">Portfolio</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
+</header>
 <main class="wrap">
-<div class="notice"><strong>AI disclosure:</strong> this is an AI-operated service. The work is produced by AI agents and reviewed under the responsibility of Mario Raposo before delivery. If you need a 100% human freelancer, this isn't the right fit.</div>
+  <div class="notice">
+    <strong>AI disclosure.</strong> These products and this page were made with AI assistance. The operation is AI-operated. <strong>Mario Raposo</strong> is responsible for what is published. The workbooks are bookkeeping aids, <strong>not accounting, tax, or legal advice</strong>. Sample numbers, and the portfolio files below, are fictional.
+  </div>
 
-<section><h2>What we do</h2><ul>
-<li>Clean messy spreadsheet/CSV data: duplicates, inconsistent names, dates, currencies, blanks</li>
-<li>Formulas, lookups, summaries and pivot tables</li>
-<li>Merge or convert exports (many CSVs → one workbook; CSV ↔ XLSX ↔ JSON)</li>
-<li>Small Python or Google Apps Script automations, with a short README</li></ul></section>
+  <section id="products">
+    <h2>The products</h2>
+    <p class="intro">Each product has a free Lite file and a paid Pro file. Payhip hosts the download. Pro prices are charged on Payhip in US dollars: <strong>US$9</strong>, <strong>US$12</strong>, and <strong>US$15</strong>.</p>
+    <p class="storeline">All six files are listed in one place: <a href="https://payhip.com/ZeroaCem">payhip.com/ZeroaCem</a>.</p>
+  </section>
 
-<section><h2>What we don't do</h2><ul>
-<li>Accounting, tax, legal or financial advice</li><li>Schoolwork / exams</li>
-<li>Sensitive personal data (health, passwords, financial identifiers)</li>
-<li>Scraping that breaks site terms, or logging into your accounts</li></ul></section>
+  <section class="product" id="budget">
+    <p class="tag">Workbook · XLSX</p>
+    <h2>Small-Business Budget &amp; Cash-Flow Tracker</h2>
+    <p>Plan the year and see where the cash goes. Enter a monthly budget per category, log transactions in a simple list, and the workbook calculates monthly income, expenses, net, and a running cash balance. The Pro dashboard compares budget with actual for every category and charts closing cash month by month.</p>
+    <div class="split">
+      <div class="tier pro">
+        <h3>Pro</h3>
+        <p class="price">US$9 <span>on Payhip</span></p>
+        <ul>
+          <li>12 months, 11 editable categories, up to 1,000 transactions</li>
+          <li>Dropdowns and negative-cash highlighting</li>
+          <li>Dashboard with a budget-vs-actual table and charts</li>
+          <li>Instructions sheet included</li>
+          <li>Excel, LibreOffice Calc, and Google Sheets (formulas tested in LibreOffice)</li>
+        </ul>
+        <a class="btn" href="https://payhip.com/b/GpayP">Open Pro on Payhip</a>
+      </div>
+      <div class="tier lite">
+        <h3>Lite</h3>
+        <p class="price">Free <span>on Payhip</span></p>
+        <ul>
+          <li>3 months</li>
+          <li>No dashboard or charts</li>
+          <li>Same honest limits as the Pro file: a bookkeeping aid, fictional sample numbers</li>
+        </ul>
+        <a class="btn ghost" href="https://payhip.com/b/O0UrB">Open free Lite on Payhip</a>
+      </div>
+    </div>
+  </section>
 
-<section><h2>How it works</h2><ol>
-<li>Email a <strong>redacted sample</strong> and the exact output you want.</li>
-<li><strong>Free scope check</strong>: we confirm feasibility, scope and price in writing.</li>
-<li>Pay <strong>100% upfront</strong> via Stripe.</li>
-<li>Delivery in <strong>24–48h</strong>, with 1 revision round.</li></ol></section>
+  <section class="product" id="invoices">
+    <p class="tag">Workbook · XLSX</p>
+    <h2>Invoice + Client &amp; Payment Tracker</h2>
+    <p>Keep clients, invoices, and payments in one workbook so you can see who owes what. Tax, totals, amount paid, balance, and status (Paid, Partial, Open, Overdue) are calculated, including partial payments. Type an invoice number to fill a printable invoice. The Pro summary shows outstanding totals, overdue aging (1–30, 31–60, and 60+ days), and monthly invoiced-versus-paid charts.</p>
+    <p>Check your local invoicing and tax rules before you rely on the tax line. This workbook does not file anything and is not tax advice.</p>
+    <div class="split">
+      <div class="tier pro">
+        <h3>Pro</h3>
+        <p class="price">US$12 <span>on Payhip</span></p>
+        <ul>
+          <li>500 invoice rows and 50 clients</li>
+          <li>Settings for tax rate and payment terms</li>
+          <li>Printable invoice, summary dashboard with charts, instructions sheet</li>
+          <li>Excel, LibreOffice Calc, and Google Sheets (tested in LibreOffice)</li>
+        </ul>
+        <a class="btn" href="https://payhip.com/b/jd4yg">Open Pro on Payhip</a>
+      </div>
+      <div class="tier lite">
+        <h3>Lite</h3>
+        <p class="price">Free <span>on Payhip</span></p>
+        <ul>
+          <li>25 invoices</li>
+          <li>No summary, aging, or charts</li>
+        </ul>
+        <a class="btn ghost" href="https://payhip.com/b/6BsCa">Open free Lite on Payhip</a>
+      </div>
+    </div>
+  </section>
 
-<section><h2>Prices</h2><p class="muted">Please pay only after we confirm your scope in writing.</p>
-<div class="grid">
-<div class="card"><h3>Quick fix</h3><div class="price">$25</div><p>One file/sheet, one clear transformation or formula fix.</p><a class="btn" href="https://buy.stripe.com/7sY14o4JLeXeeIs5Qo3ZK00">Pay $25</a></div>
-<div class="card"><h3>Standard</h3><div class="price">$45</div><p>Several files/sheets: cleanup + summary/pivot.</p><a class="btn" href="https://buy.stripe.com/9B600k4JLdTacAk5Qo3ZK01">Pay $45</a></div>
-<div class="card"><h3>Custom</h3><div class="price">$80</div><p>Small Python / Apps Script automation with README and test run.</p><a class="btn" href="https://buy.stripe.com/aFaaEY1xzaGY57S92A3ZK02">Pay $80</a></div>
-</div></section>
+  <section class="product" id="cleaner">
+    <p class="tag">Python script · ZIP</p>
+    <h2>Data Cleaner for CSV/Excel</h2>
+    <p>One command turns a messy export into clean data. Pro removes duplicates, trims spaces, fixes name casing, standardizes dates to YYYY-MM-DD, and converts currency text such as <code>$1,250.00</code>, <code>€ 89,90</code>, or <code>(45.00)</code> into numbers. You also get a blanks report per column, a list of removed duplicates, and a log of values it could not parse, so nothing changes silently.</p>
+    <div class="split">
+      <div class="tier pro">
+        <h3>Pro</h3>
+        <p class="price">US$15 <span>on Payhip</span></p>
+        <ul>
+          <li>CSV or XLSX in and out</li>
+          <li>Automatic encoding and delimiter detection, plus key-column dedupe</li>
+          <li>README with examples and fictional sample data</li>
+          <li>Requires Python 3.8 or newer, with pandas</li>
+        </ul>
+        <a class="btn" href="https://payhip.com/b/3awQx">Open Pro on Payhip</a>
+      </div>
+      <div class="tier lite">
+        <h3>Lite</h3>
+        <p class="price">Free <span>on Payhip</span></p>
+        <ul>
+          <li>Exact dedupe, trim, and a blanks count only</li>
+          <li>No date, casing, or currency cleanup</li>
+        </ul>
+        <a class="btn ghost" href="https://payhip.com/b/v26Fz">Open free Lite on Payhip</a>
+      </div>
+    </div>
+    <p class="muted">Keep a backup of the original file and read the parse-issues report before you replace your data. The portfolio demos further down are examples of this kind of cleanup. They are not the product download.</p>
+  </section>
 
-<section><h2>Portfolio (synthetic data only)</h2>
-<h3>1. Messy CSV → clean Excel</h3>
-<div class="ba"><div><strong>Before</strong><br>65-row sales CSV: 5 duplicates, inconsistent names/case/spaces, 3 date formats, "$"/"USD" mixed into amounts, blank quantities.</div>
-<div><strong>After</strong><br>Excel workbook: normalized &amp; sorted data, styled frozen header with filter, <code>line_total</code> formula, SUM/AVERAGE/SUMIF KPIs, customer × region pivot, and a Change_Log (65 in → 5 duplicates removed → 60 out; 14 blank qty set to 1 and flagged). Total revenue: <strong>57,590.74</strong>.</div></div>
-<p>Files: <a href="ex1_csv_cleanup/messy_sales.csv">messy_sales.csv</a> · <a href="ex1_csv_cleanup/clean_sales.xlsx">clean_sales.xlsx</a> · <a href="ex1_csv_cleanup/clean.py">clean.py</a> · <a href="ex1_csv_cleanup/make_messy.py">make_messy.py</a></p>
-<h3>2. Merge differing CSV exports (Python)</h3>
-<div class="ba"><div><strong>Before</strong><br>3 store CSV exports with different headers (SKU / sku / Item SKU; Units / units sold / Qty).</div>
-<div><strong>After</strong><br><code>merge_reports.py input merged.xlsx</code> → one workbook with All_Rows (incl. source_file) and Summary_by_SKU. Verified: 3 files, 45 rows. PDF preview included.</div></div>
-<p>Files: <a href="ex2_merge_script/input/store_a_october.csv">store_a</a> · <a href="ex2_merge_script/input/store_b_october.csv">store_b</a> · <a href="ex2_merge_script/input/store_c_october.csv">store_c</a> · <a href="ex2_merge_script/merge_reports.py">merge_reports.py</a> · <a href="ex2_merge_script/merged.xlsx">merged.xlsx</a> · <a href="ex2_merge_script/merged.pdf">merged.pdf</a></p>
-</section>
+  <section id="compare">
+    <h2>Lite and Pro, side by side</h2>
+    <table>
+      <caption class="muted" style="text-align:left;caption-side:bottom;padding-top:8px;">Prices are what Payhip charges. This site does not collect them.</caption>
+      <thead>
+        <tr>
+          <th scope="col">Product</th>
+          <th scope="col">Lite (free)</th>
+          <th scope="col">Pro</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th scope="row">Budget &amp; cash flow</th>
+          <td>3 months. No dashboard or charts.</td>
+          <td>12 months, dashboard, and charts. US$9.</td>
+        </tr>
+        <tr>
+          <th scope="row">Invoices &amp; payments</th>
+          <td>25 invoices. No summary, aging, or charts.</td>
+          <td>500 invoices, 50 clients, printable invoice, aging, and charts. US$12.</td>
+        </tr>
+        <tr>
+          <th scope="row">Data cleaner</th>
+          <td>Exact dedupe, trim, and blanks count.</td>
+          <td>Dates, names, currency, dedupe reports, and a parse log. US$15. Python 3.8+ and pandas.</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
 
-<section><h2>Free open-source templates &amp; tools</h2>
-<p class="muted">Free Lite versions on GitHub (MIT license). Each README links to an optional Pro version.</p>
-<ul>
-<li><a href="https://github.com/Raposo2025/small-business-budget-cashflow-tracker-excel">Small-Business Budget &amp; Cash-Flow Tracker (Excel)</a></li>
-<li><a href="https://github.com/Raposo2025/invoice-client-payment-tracker-excel">Invoice + Client &amp; Payment Tracker (Excel)</a></li>
-<li><a href="https://github.com/Raposo2025/csv-data-cleaner-python">CSV/Excel Data Cleaner (Python)</a></li>
-</ul></section>
+  <section id="buying">
+    <h2>How to get a file</h2>
+    <ol>
+      <li>Pick Lite or Pro from the links above.</li>
+      <li>Payhip gives you the file. Free Lite is a US$0 download. Pro is paid on Payhip.</li>
+      <li>Open workbooks in Excel, LibreOffice Calc, or Google Sheets. Run the cleaner locally with Python; it does not upload your spreadsheet anywhere from this site.</li>
+    </ol>
+    <p>If a file will not open or does not work as described, and it cannot be fixed, the product pages say to contact the seller through Payhip within 7 days. Refunds for a defective file are handled there.</p>
+  </section>
 
-<section><h2>Terms (short version)</h2><ul>
-<li>Fixed price agreed in writing before work; 100% upfront via Stripe.</li>
-<li>Delivery 24–48h after payment; 1 revision within the original scope.</li>
-<li>Full refund if you cancel before work starts or if we don't deliver the agreed scope.</li>
-<li>Your files are used only for your job and deleted 7 days after delivery.</li>
-<li>No guarantee of business outcomes; not accounting, tax or legal advice.</li></ul></section>
+  <section id="open-source">
+    <h2>Free open-source templates &amp; tools</h2>
+    <p class="muted">Free Lite versions on GitHub (MIT license). Each README links to the optional Pro version on Payhip.</p>
+    <ul>
+      <li><a href="https://github.com/Raposo2025/small-business-budget-cashflow-tracker-excel">Small-Business Budget &amp; Cash-Flow Tracker (Excel)</a></li>
+      <li><a href="https://github.com/Raposo2025/invoice-client-payment-tracker-excel">Invoice + Client &amp; Payment Tracker (Excel)</a></li>
+      <li><a href="https://github.com/Raposo2025/csv-data-cleaner-python">CSV/Excel Data Cleaner (Python)</a></li>
+    </ul>
+  </section>
 
-<section><h2>Contact</h2><p>Email: <a href="mailto:zeroacem@mail.grokbot.com">zeroacem@mail.grokbot.com</a></p></section>
+  <section id="portfolio">
+    <h2>Portfolio proof</h2>
+    <p>Two demos with <strong>synthetic data only</strong>. No client files. They show the same cleanup ideas as the Data Cleaner. Downloading them from this repository is not a purchase.</p>
+
+    <h3>1. Messy CSV to a clean workbook</h3>
+    <div class="ba">
+      <div><strong>Before.</strong> A 65-row sales CSV: 5 duplicates, inconsistent names, case, and spaces, 3 date formats, “$” and “USD” mixed into amounts, and blank quantities.</div>
+      <div><strong>After.</strong> A workbook with normalized, sorted data, a styled frozen header and filter, a <code>line_total</code> formula, SUM / AVERAGE / SUMIF figures, a customer × region pivot, and a change log (65 in, 5 duplicates removed, 60 out; 14 blank quantities set to 1 and flagged). Total revenue in the sample: <strong>57,590.74</strong>.</div>
+    </div>
+    <p class="files">Files: <a href="ex1_csv_cleanup/messy_sales.csv">messy_sales.csv</a> · <a href="ex1_csv_cleanup/clean_sales.xlsx">clean_sales.xlsx</a> · <a href="ex1_csv_cleanup/clean.py">clean.py</a> · <a href="ex1_csv_cleanup/make_messy.py">make_messy.py</a></p>
+
+    <h3>2. Merge CSV exports with different headers</h3>
+    <div class="ba">
+      <div><strong>Before.</strong> Three store CSV exports with different headers (SKU / sku / Item SKU; Units / units sold / Qty).</div>
+      <div><strong>After.</strong> <code>merge_reports.py input merged.xlsx</code> writes one workbook with All_Rows (including <code>source_file</code>) and Summary_by_SKU. Checked result: 3 files, 45 rows. A PDF preview is included.</div>
+    </div>
+    <p class="files">Files: <a href="ex2_merge_script/input/store_a_october.csv">store_a</a> · <a href="ex2_merge_script/input/store_b_october.csv">store_b</a> · <a href="ex2_merge_script/input/store_c_october.csv">store_c</a> · <a href="ex2_merge_script/merge_reports.py">merge_reports.py</a> · <a href="ex2_merge_script/merged.xlsx">merged.xlsx</a> · <a href="ex2_merge_script/merged.pdf">merged.pdf</a></p>
+  </section>
+
+  <section class="later" id="later">
+    <h2>Custom cleanup, later</h2>
+    <p>One-off spreadsheet cleanup may be offered again later. It is not for sale on this page. The three products above are what you can download today. Email <a href="mailto:zeroacem@mail.grokbot.com">zeroacem@mail.grokbot.com</a> if you want a note when custom work returns.</p>
+  </section>
+
+  <section id="contact">
+    <h2>Contact</h2>
+    <p>Email <a href="mailto:zeroacem@mail.grokbot.com">zeroacem@mail.grokbot.com</a>. For a file you already bought or downloaded, use Payhip so the order stays attached to the message.</p>
+    <p class="muted">Mario Raposo is responsible for this project. Nothing here is accounting, tax, or legal advice. Do not send passwords, health records, or full financial identifiers.</p>
+  </section>
 </main>
-<footer>© 2026 Zero a Cem · AI-operated, reviewed by Mario Raposo<br><small>Versão em português pode ser adicionada depois — English is the primary language.</small></footer>
-</body></html>
+<footer>
+  © 2026 Projeto Zero a Cem · AI-operated; Mario Raposo is responsible<br>
+  <small>English is the primary language. A Portuguese version can be added later.</small>
+</footer>
+</body>
+</html>
